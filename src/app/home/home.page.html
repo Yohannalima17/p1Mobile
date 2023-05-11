@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="text-center">
+      Projeto Mobile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="text-center">Projeto Mobile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div id="container-list">
+    <ion-card>
+      <ion-card-header>
+        <h3 class="titulo-lista">Lista de produtos</h3>
+      </ion-card-header>
+      <ion-card-content>
+        <table border="1">
+          <tr class="titulos">
+            <th>ID</th>
+            <th>NOME</th>
+            <th>IMAGEM</th>
+            <th>PREÇO</th>
+            <th>DATA</th>
+            <th>AÇÃO</th>
+          </tr>
+          <tr *ngFor="let produto of produtos" class="lista">
+            <td>{{produto.id}}</td>
+            <td>{{produto.nome}}</td>
+            <td><img width="50" height="50" src="https://www.aalpha.net/wp-content/uploads/2020/01/ionic.png" alt="Imagem do produto"></td>
+            <td>{{produto.V}}</td>
+            <td>{{produto.dt}}</td>
+            <td>
+              <ion-icon name="create-outline"></ion-icon>
+              <ion-icon name="trash-outline" (click)="onClickDelete(produto.id)"></ion-icon>
+            </td>
+          </tr>
+        </table>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div id="container-form">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Informe os dados do produto</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-item>
+          <ion-input [(ngModel)]="nome" label="Nome: "></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="V" label="Preço: "></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="dt" label="Data de Fabricação: "></ion-input>
+        </ion-item>
+        <ion-button size="small" (click)="onClickSave()" type="submit" expand="block">Enviar</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
