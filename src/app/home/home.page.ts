@@ -52,4 +52,21 @@ export class HomePage {
       this.serv.getProdutos().subscribe(response=>(this.produtos = response))
     })
   }
+
+  idDelete= -1;
+  //Alert do deletar
+  public alertButtons = [
+    {
+      text: 'Não',
+      cssClass: 'alert-button-cancel',
+    },
+    {
+      text: 'Sim',
+      cssClass: 'alert-button-confirm',
+      handler: () => {
+        this.onClickDelete(this.idDelete)
+      }
+    },
+  ];
+
 }

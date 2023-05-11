@@ -34,15 +34,16 @@
             <td>{{produto.V}}</td>
             <td>{{produto.dt}}</td>
             <td>
-              <ion-icon name="create-outline"></ion-icon>
-              <ion-icon name="trash-outline" (click)="onClickDelete(produto.id)"></ion-icon>
+              <ion-icon class= "botao-edit" name="create-outline"></ion-icon>
+              <ion-icon (click)="idDelete=produto.id" class= "botao-delete" name="trash-outline" [id]="'present-alert-' + produto.id"></ion-icon>
             </td>
           </tr>
         </table>
+        <ion-alert [trigger]="'present-alert-'+idDelete" class="custom-alert" header="Deseja excluir o produto?" [buttons]="alertButtons"></ion-alert>
       </ion-card-content>
     </ion-card>
   </div>
-
+  
   <div id="container-form">
     <ion-card>
       <ion-card-header>
