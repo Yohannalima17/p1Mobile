@@ -34,7 +34,7 @@
             <td>{{produto.V}}</td>
             <td>{{produto.dt}}</td>
             <td>
-              <ion-icon class= "botao-edit" name="create-outline"></ion-icon>
+              <ion-icon (click)="onClickUpdate(produto)" class= "botao-edit" name="create-outline"></ion-icon>
               <ion-icon (click)="idDelete=produto.id" class= "botao-delete" name="trash-outline" [id]="'present-alert-' + produto.id"></ion-icon>
             </td>
           </tr>
@@ -60,7 +60,8 @@
         <ion-item>
           <ion-input [(ngModel)]="dt" label="Data de Fabricação: "></ion-input>
         </ion-item>
-        <ion-button size="small" (click)="onClickSave()" type="submit" expand="block">Enviar</ion-button>
+        <ion-button size="small" (click)="onClickSave()" type="submit" expand="block" class="enviar">Enviar</ion-button>
+        <ion-button size="small" (click)="onClickSaveUpdate(id)" type="submit" expand="block">Atualizar</ion-button>
       </ion-card-content>
     </ion-card>
   </div>

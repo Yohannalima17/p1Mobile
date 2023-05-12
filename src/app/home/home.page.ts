@@ -1,7 +1,8 @@
 
+import { Form } from '@angular/forms';
 import { HomeService } from './home.service';
 import { Produtos } from './produtos';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -32,16 +33,29 @@ export class HomePage {
       this.produtos=response
       this.serv.getProdutos().subscribe(response=>(this.produtos = response))
     })
+    this.nome ='';
+    this.V = 0;
+    this.dt = '';
   }
 
   //Botão atualizar
-  onClickUpdate(id:number, nome: string, V: number, dt: string){
-    let p = new Produtos(id, nome, V, dt);
-    
+  onClickUpdate(p: Produtos){
+    this.id = p.id;
+    this.nome = p.nome;
+    this.V = p.V;
+    this.dt = p.dt;
+  }
+
+  onClickSaveUpdate(id: number){
+    let p = new Produtos(id, this.nome, this.V, this.dt)
+
     this.serv.updateProdutos(id, p).subscribe(response =>{
       this.produtos=response
       this.serv.getProdutos().subscribe(response=>(this.produtos = response))
     })
+    this.nome ='';
+    this.V = 0;
+    this.dt = '';
   }
 
   //Botão deletar
