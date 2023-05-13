@@ -3,6 +3,7 @@ import { Form } from '@angular/forms';
 import { HomeService } from './home.service';
 import { Produtos } from './produtos';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { max } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -26,13 +27,19 @@ export class HomePage {
 
   //Botão salvar
   onClickSave(){
-    let proxID = this.produtos.length+1
-    let p = new Produtos(proxID, this.nome, this.V, this.dt)
+    let maxID = 0
+    this.produtos.forEach(function(prod:Produtos){
+      if(maxID<prod.id){
+        maxID = prod.id
+      }
+    })
+    maxID++
+    let p = new Produtos(maxID, this.nome, this.V, this.dt)
 
     this.serv.addProdutos(p).subscribe(response =>{
-      this.produtos=response
       this.serv.getProdutos().subscribe(response=>(this.produtos = response))
     })
+    
     this.nome ='';
     this.V = 0;
     this.dt = '';
